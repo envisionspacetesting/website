@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Envision Space | Architecture & Design</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; color: #333; background-color: #f9fafb; }
+    header { background: #fff; box-shadow: 0 1px 4px rgba(0,0,0,0.08); position: sticky; top: 0; z-index: 10; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 1rem; }
+    nav a { margin: 0 1rem; text-decoration: none; color: #333; font-weight: 500; }
+    nav a:hover { color: #059669; }
+    .btn-primary { background: #059669; color: white; padding: 0.75rem 1.5rem; border-radius: 6px; text-decoration: none; }
+    .btn-outline { border: 1px solid #ccc; padding: 0.75rem 1.5rem; border-radius: 6px; text-decoration: none; color: #333; }
+    section { padding: 4rem 0; }
+    h1,h2,h3,h4 { font-weight: 700; }
+    .hero { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 2rem; }
+    .hero img { width: 100%; max-width: 500px; border-radius: 12px; }
+    .grid { display: grid; gap: 1.5rem; }
+    .projects { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+    .project-card { background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 6px rgba(0,0,0,0.08); }
+    .project-card img { width: 100%; height: 200px; object-fit: cover; }
+    .project-card div { padding: 1rem; }
+    .services, .team { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+    .card { background: #fff; border-radius: 10px; padding: 1.5rem; box-shadow: 0 2px 6px rgba(0,0,0,0.08); }
+    form input, form textarea { width: 100%; padding: 0.75rem; border: 1px solid #ccc; border-radius: 6px; }
+    form button { margin-top: 0.5rem; }
+    footer { background: #111827; color: #ccc; padding: 2rem 0; text-align: center; font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container" style="display:flex;align-items:center;justify-content:space-between;padding:1rem 0;">
+    <div style="display:flex;align-items:center;gap:0.5rem;">
+      <div style="background:#059669;color:white;padding:0.5rem 0.75rem;border-radius:6px;font-weight:700;">AF</div>
+      <div>
+        <h1 style="font-size:1.25rem;">Envision Space</h1>
+        <p style="font-size:0.9rem;color:#6b7280;">Design • Build • Inspire</p>
+      </div>
+    </div>
+    <nav>
+      <a href="#projects">Projects</a>
+      <a href="#services">Services</a>
+      <a href="#team">Team</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="#contact" class="btn-primary">Get a Quote</a>
+  </div>
+</header>
+
+<section class="hero container">
+  <div>
+    <h2 style="font-size:2.5rem;line-height:1.2;">Thoughtful architecture, timeless spaces</h2>
+    <p style="margin-top:1rem;color:#555;max-width:500px;">We design residential and commercial spaces with a focus on sustainability and lived experience. From concept to completion, we partner with clients to build meaningful places.</p>
+    <div style="margin-top:1.5rem;display:flex;gap:1rem;">
+      <a href="#projects" class="btn-primary">Our Projects</a>
+      <a href="#contact" class="btn-outline">Contact Us</a>
+    </div>
+  </div>
+  <img src="hero-image.jpg" alt="Architecture" />
+</section>
+
+<section id="projects">
+  <div class="container">
+    <h3 style="font-size:1.75rem;margin-bottom:0.5rem;">Selected Projects</h3>
+    <p style="color:#555;margin-bottom:2rem;">A curated look at recent residential and commercial work.</p>
+    <div class="grid projects">
+      <div class="project-card">
+        <img src="project1.jpg" alt="Project 1" />
+        <div>
+          <h4>Project One</h4>
+          <p style="color:#666;font-size:0.9rem;margin-top:0.3rem;">Delhi • Residential</p>
+        </div>
+      </div>
+      <div class="project-card">
+        <img src="project2.jpg" alt="Project 2" />
+        <div>
+          <h4>Modern Villa</h4>
+          <p style="color:#666;font-size:0.9rem;margin-top:0.3rem;">Jaipur • Villa</p>
+        </div>
+      </div>
+      <div class="project-card">
+        <img src="project3.jpg" alt="Project 3" />
+        <div>
+          <h4>Corporate HQ</h4>
+          <p style="color:#666;font-size:0.9rem;margin-top:0.3rem;">Gurgaon • Commercial</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="container">
+    <h3 style="font-size:1.75rem;margin-bottom:0.5rem;">Our Services</h3>
+    <p style="color:#555;margin-bottom:2rem;">We provide full design services from concept to delivery.</p>
+    <div class="grid services">
+      <div class="card">
+        <h4>Architectural Design</h4>
+        <p style="color:#666;font-size:0.9rem;margin-top:0.5rem;">Concept design, detailed drawings, and construction coordination.</p>
+      </div>
+      <div class="card">
+        <h4>Interior Design</h4>
+        <p style="color:#666;font-size:0.9rem;margin-top:0.5rem;">Material selection, lighting, and interior detailing.</p>
+      </div>
+      <div class="card">
+        <h4>Project Management</h4>
+        <p style="color:#666;font-size:0.9rem;margin-top:0.5rem;">Site supervision and contractor coordination.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="team">
+  <div class="container">
+    <h3 style="font-size:1.75rem;margin-bottom:0.5rem;">Our Team</h3>
+    <p style="color:#555;margin-bottom:2rem;">A team of architects and designers.</p>
+    <div class="grid team">
+      <div class="card" style="text-align:center;">
+        <div style="background:#e5e7eb;width:100px;height:100px;border-radius:50%;margin:0 auto;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.5rem;">A</div>
+        <h4 style="margin-top:1rem;">Ishu</h4>
+        <p style="color:#666;font-size:0.9rem;"> Architect</p>
+      </div>
+      <div class="card" style="text-align:center;">
+        <div style="background:#e5e7eb;width:100px;height:100px;border-radius:50%;margin:0 auto;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.5rem;">R</div>
+        <h4 style="margin-top:1rem;">Ritwik</h4>
+        <p style="color:#666;font-size:0.9rem;">Architect</p>
+      </div>
+      <div class="card" style="text-align:center;">
+        <div style="background:#e5e7eb;width:100px;height:100px;border-radius:50%;margin:0 auto;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.5rem;">M</div>
+        <h4 style="margin-top:1rem;">Bhavesh</h4>
+        <p style="color:#666;font-size:0.9rem;">Architect</p>
+      </div>
+      <div class="card" style="text-align:center;">
+        <div style="background:#e5e7eb;width:100px;height:100px;border-radius:50%;margin:0 auto;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.5rem;">K</div>
+        <h4 style="margin-top:1rem;">Ishu ki bandi</h4>
+        <p style="color:#666;font-size:0.9rem;">Architect</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <h3 style="font-size:1.75rem;margin-bottom:0.5rem;">Get in Touch</h3>
+    <p style="color:#555;margin-bottom:2rem;">Tell us about your project. We'll get back soon.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem;">
+      <div>
+        <p><strong>Office —</strong><br>Clerk Colony </p>
+        <p style="margin-top:1rem;"><strong>Email —</strong><br>ishuenvision@gmail.com</p>
+        <p style="margin-top:1rem;"><strong>Phone —</strong><br>+91 00000000</p>
+      </div>
+      <form>
+        <label>Name</label><br>
+        <input type="text" placeholder="Your name"><br><br>
+        <label>Email</label><br>
+        <input type="email" placeholder="you@domain.com"><br><br>
+        <label>Message</label><br>
+        <textarea rows="4" placeholder="Tell us about your project"></textarea><br>
+        <button class="btn-primary" type="submit">Send Message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>© 2025 Envision Space. All rights reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>
