@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Envision Space | Architecture & Design</title>
-
+<link rel="icon" href="favicon.ico" type="image/x-icon">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -13,7 +13,7 @@
   .container { max-width: 1200px; margin: 0 auto; padding: 1rem 2rem; }
   nav a { margin: 0 1rem; text-decoration: none; color: #222; font-weight: 500; transition: color 0.3s; }
   nav a:hover { color: #059669; }
-  .btn-primary { background: #059669; color: white; padding: 0.75rem 1.5rem; border-radius: 8px; text-decoration: none; transition: 0.3s; border: none; cursor: pointer; }
+  .btn-primary { background: #059669; color: white; padding: 0.75rem 1.5rem; border-radius: 8px; text-decoration: none; transition: 0.3s; }
   .btn-primary:hover { background: #047857; }
 
   /* HERO */
@@ -26,37 +26,27 @@
 
   /* PROJECTS */
   #projects { background: #fff; padding: 5rem 0; }
-  h2.section-title { font-size: 2rem; text-align: center; margin-bottom: 0.5rem; color:#0f1724; }
+  h2.section-title { font-size: 2rem; text-align: center; margin-bottom: 0.5rem; }
   p.section-sub { text-align: center; color: #555; margin-bottom: 3rem; }
   .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 2rem; }
-  .project-card { perspective: 1000px; cursor: pointer; outline: none; }
-  .card-inner { position: relative; width: 100%; height: 320px; transition: transform 0.8s; transform-style: preserve-3d; border-radius: 12px; }
+  .project-card { perspective: 1000px; cursor: pointer; }
+  .card-inner { position: relative; width: 100%; height: 320px; transition: transform 0.8s; transform-style: preserve-3d; }
   .project-card:hover .card-inner { transform: rotateY(180deg); }
   .card-front, .card-back {
     position: absolute; width: 100%; height: 100%; border-radius: 12px;
     backface-visibility: hidden; box-shadow: 0 6px 20px rgba(0,0,0,0.1); overflow: hidden;
   }
-  .card-front img { width: 100%; height: 100%; object-fit: cover; display:block; }
-  .card-front .meta{ position:absolute; left:1rem; bottom:1rem; background: rgba(255,255,255,0.85); padding:0.5rem 0.9rem; border-radius:8px; color:#032018; box-shadow:0 4px 12px rgba(2,6,23,0.06); }
-  .card-front .meta h4{ margin:0; font-size:1.05rem; font-weight:600 }
-  .card-front .meta .sub{ font-size:0.85rem; color:#065f46; margin-top:0.2rem; font-weight:500 }
-
+  .card-front img { width: 100%; height: 100%; object-fit: cover; }
   .card-back {
-    background: #059669; color: white; display: flex; flex-direction: column; align-items: center; justify-content: center; transform: rotateY(180deg); padding: 1rem; text-align:center;
+    background: #059669; color: white; display: flex; flex-direction: column; align-items: center; justify-content: center; transform: rotateY(180deg); padding: 1rem;
   }
-  .card-back h3{ margin:0; font-size:1.15rem }
-  .card-back p{ margin-top:0.5rem; font-size:0.95rem }
 
   /* SERVICES & TEAM */
   .grid { display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); margin-top: 3rem; }
-  .card { background: #fff; border-radius: 10px; padding: 1.5rem; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.08); transition: 0.3s; }
+  .card { background: #fff; border-radius: 10px; padding: 2rem; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.08); transition: 0.3s; }
   .card:hover { transform: translateY(-5px); }
 
-  /* Team member photo */
-  .team-member { display:flex; flex-direction:column; align-items:center; gap:0.6rem; }
-  .team-photo { width:100px; height:100px; border-radius:50%; object-fit:cover; background:#e5e7eb; }
-
-  /* CONTACT FORM - KEEP EXACT PATTERN (floating labels) */
+  /* CONTACT FORM */
   #contact { padding: 5rem 0; background: linear-gradient(135deg, #ecfdf5, #f8fafc); }
   form { background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
   form .field { position: relative; margin-bottom: 1.5rem; }
@@ -81,41 +71,11 @@
   .reveal { opacity: 0; transform: translateY(40px); transition: all 1s ease; }
   .reveal.active { opacity: 1; transform: translateY(0); }
 
-  /* Modal (dark cinematic) - does not change other sections */
-  .modal-backdrop {
-    position: fixed; inset: 0; background: rgba(6,8,12,0.7); backdrop-filter: blur(6px); display: flex; align-items: center; justify-content: center;
-    z-index: 9999; opacity: 0; pointer-events: none; transition: opacity 0.25s ease;
-  }
-  .modal-backdrop.open { opacity: 1; pointer-events: auto; }
-  .modal {
-    width: 92%; max-width: 1000px; border-radius: 12px; overflow: hidden; background: linear-gradient(180deg, #0b0c0f, #0b1013); color: #e6eef6;
-    box-shadow: 0 30px 90px rgba(2,6,23,0.8); transform: translateY(10px) scale(0.98); opacity: 0; transition: transform 0.28s cubic-bezier(.2,.9,.2,1), opacity 0.28s;
-  }
-  .modal-backdrop.open .modal { transform: translateY(0) scale(1); opacity: 1; }
-
-  .modal-header{ display:flex; align-items:flex-start; justify-content:space-between; padding:1rem 1.2rem; border-bottom: 1px solid rgba(255,255,255,0.03); }
-  .modal-title{ font-weight:700; font-size:1.15rem; }
-  .modal-sub{ color:#9CA3AF; font-size:0.9rem; margin-top:0.2rem; }
-
-  .modal-body { display:flex; gap: 1rem; padding: 1rem; align-items:stretch; }
-  .video-wrap { flex:1 1 60%; min-height: 260px; background: #000; border-radius: 8px; overflow:hidden; }
-  .info { flex:1 1 40%; padding: 0.8rem 1rem; display:flex; flex-direction:column; gap:0.6rem; }
-
-  .video-inner { position: relative; width:100%; height:0; padding-bottom:56.25%; }
-  .video-inner iframe { position:absolute; inset:0; width:100%; height:100%; border:0; }
-
-  .modal-footer { display:flex; align-items:center; justify-content:space-between; padding: 0.8rem 1.2rem; border-top: 1px solid rgba(255,255,255,0.03); color:#9CA3AF; }
-
-  .close-btn { background: transparent; border: 1px solid rgba(255,255,255,0.06); padding: 0.4rem 0.6rem; border-radius: 8px; color: #fff; cursor:pointer; }
-
-  @media (max-width:880px) {
-    .modal-body { flex-direction: column; }
-    .card-inner { height: 260px; }
-    .hero { flex-direction: column; align-items:flex-start; }
-  }
-  @media (max-width:520px) {
-    .card-inner { height: 220px; }
-  }
+  /* MODAL VIDEO */
+  .modal { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.8); justify-content: center; align-items: center; z-index: 999; }
+  .modal-content { position: relative; width: 90%; max-width: 900px; background: #000; border-radius: 12px; overflow: hidden; }
+  .modal-close { position: absolute; top: 10px; right: 15px; font-size: 2rem; color: #fff; cursor: pointer; z-index:10; }
+  .modal iframe { width: 100%; height: 500px; border: none; }
 </style>
 </head>
 <body>
@@ -134,7 +94,7 @@
       <a href="#team">Team</a>
       <a href="#contact">Contact</a>
     </nav>
-    <button class="btn-primary" onclick="document.querySelector('#contact').scrollIntoView({behavior:'smooth'})">Get a Quote</button>
+    <a href="#contact" class="btn-primary">Get a Quote</a>
   </div>
 </header>
 
@@ -144,7 +104,7 @@
     <p style="margin-top:1rem;color:#555;max-width:500px;">We design spaces that tell stories. From concept to completion, we partner with you to create meaningful, sustainable, and lasting environments.</p>
     <div style="margin-top:1.5rem;display:flex;gap:1rem;">
       <a href="#projects" class="btn-primary">View Projects</a>
-      <a href="#contact" class="btn-primary" style="background:#fff;color:#059669;border:2px solid #059669;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;">Contact Us</a>
+      <a href="#contact" class="btn-primary" style="background:#fff;color:#059669;border:2px solid #059669;">Contact Us</a>
     </div>
   </div>
   <img src="ishuimage1.jpeg" alt="Architecture" class="reveal"/>
@@ -152,68 +112,36 @@
 
 <section id="projects">
   <div class="container">
-    <h3 class="section-title reveal">Selected Projects</h3>
+    <h2 class="section-title reveal">Selected Projects</h2>
     <p class="section-sub reveal">Hover to explore project details</p>
     <div class="projects-grid">
-      <!-- Project 1 -->
-      <div class="project-card reveal" tabindex="0" role="button"
-           data-title="Urban Serenity"
-           data-sub="Delhi • Residential • 2024"
-           data-desc="A calm home built with minimal forms and natural light. The design emphasizes quiet spaces and a restrained material palette."
-           data-video="https://www.youtube.com/embed/8Lgi_X8VC-A?rel=0">
+      <div class="project-card reveal" data-video="https://www.youtube.com/embed/8Lgi_X8VC-A">
         <div class="card-inner">
-          <div class="card-front">
-            <img src="ishuimage2.jpeg" alt="Project 1" />
-            <div class="meta">
-              <h4>Urban Serenity</h4>
-              <div class="sub">Delhi • Residential</div>
-            </div>
-          </div>
+          <div class="card-front"><img src="ishuimage2.jpeg" alt="Project 1"></div>
           <div class="card-back">
             <h3>Urban Serenity</h3>
-            <p>Minimal, light-filled home designed for calm living.</p>
+            <p>Delhi • Residential • 2024</p>
+            <p style="margin-top:1rem;">A calm home built with minimal forms and natural light.</p>
           </div>
         </div>
       </div>
-
-      <!-- Project 2 -->
-      <div class="project-card reveal" tabindex="0" role="button"
-           data-title="Modern Villa"
-           data-sub="Jaipur • Luxury Villa"
-           data-desc="A bold, fluid villa where glass and greenery meet. The layout opens onto courtyards that connect interiors with landscape."
-           data-video="https://www.youtube.com/embed/-YlmnPh-6rE?rel=0">
+      <div class="project-card reveal" data-video="https://www.youtube.com/embed/-YlmnPh-6rE">
         <div class="card-inner">
-          <div class="card-front">
-            <img src="ishuimage3.jpeg" alt="Project 2" />
-            <div class="meta">
-              <h4>Modern Villa</h4>
-              <div class="sub">Jaipur • Villa</div>
-            </div>
-          </div>
+          <div class="card-front"><img src="ishuimage3.jpeg" alt="Project 2"></div>
           <div class="card-back">
             <h3>Modern Villa</h3>
-            <p>Fluid geometry and indoor-outdoor connections.</p>
+            <p>Jaipur • Luxury Villa</p>
+            <p style="margin-top:1rem;">A bold, fluid space blending glass and greenery.</p>
           </div>
         </div>
       </div>
-
-      <!-- Project 3 -->
-      <div class="project-card reveal" tabindex="0" role="button"
-           data-title="Corporate HQ"
-           data-sub="Gurgaon • Commercial"
-           data-desc="An innovative workplace that prioritizes well-being, flexible collaboration zones, and daylight strategies across floors."
-           data-video="https://www.youtube.com/embed/B4-HoKdW6j0?rel=0">
+      <div class="project-card reveal" data-video="https://www.youtube.com/embed/B4-HoKdW6j0">
         <div class="card-inner">
-          <div class="card-front">
-            <img src="ishuimage4.jpeg" alt="Project 3" />
-            <div class="meta">
-              <h4>Corporate HQ</h4>
-              <div class="sub">Gurgaon • Commercial</div>
-            </div>
-          </div>
+          <div class="card-front"><img src="ishuimage4.jpeg" alt="Project 3"></div>
           <div class="card-back">
             <h3>Corporate HQ</h3>
-            <p>Workplace focused on health and collaboration.</p>
+            <p>Gurgaon • Commercial</p>
+            <p style="margin-top:1rem;">Innovative workplace design focusing on well-being.</p>
           </div>
         </div>
       </div>
@@ -222,237 +150,132 @@
 </section>
 
 <section id="services">
-  <div class="container">
-    <h3 style="font-size:1.75rem;margin-bottom:0.5rem;" class="reveal">Our Services</h3>
-    <p style="color:#555;margin-bottom:2rem;" class="reveal">We provide full design services from concept to delivery.</p>
+  <div class="container reveal">
+    <h2 class="section-title">Our Services</h2>
+    <p class="section-sub">From concept sketches to final handover</p>
     <div class="grid">
       <div class="card">
-        <h4>Architectural Design</h4>
-        <p style="color:#666;font-size:0.9rem;margin-top:0.5rem;">Concept design, detailed drawings, and construction coordination.</p>
+        <h3>Architectural Design</h3>
+        <p>End-to-end design solutions with sustainability at core.</p>
       </div>
       <div class="card">
-        <h4>Interior Design</h4>
-        <p style="color:#666;font-size:0.9rem;margin-top:0.5rem;">Material selection, lighting, and interior detailing.</p>
+        <h3>Interior Design</h3>
+        <p>Creating balanced, aesthetic, and functional interiors.</p>
       </div>
       <div class="card">
-        <h4>Project Management</h4>
-        <p style="color:#666;font-size:0.9rem;margin-top:0.5rem;">Site supervision and contractor coordination.</p>
+        <h3>Project Management</h3>
+        <p>Timely delivery and quality assurance throughout execution.</p>
       </div>
     </div>
   </div>
 </section>
 
 <section id="team">
-  <div class="container">
-    <h3 style="font-size:1.75rem;margin-bottom:0.5rem;" class="reveal">Our Team</h3>
-    <p style="color:#555;margin-bottom:2rem;" class="reveal">A team of architects and designers.</p>
+  <div class="container reveal">
+    <h2 class="section-title">Our Team</h2>
+    <p class="section-sub">Creative minds behind every space</p>
     <div class="grid">
-      <div class="team-member card" style="text-align:center;">
-        <img class="team-photo" src="Dp_image.jpeg" alt="Ishu - photo">
-        <h4 style="margin-top:0.6rem;">Ishu</h4>
-        <p style="color:#666;font-size:0.9rem;">Architect</p>
-      </div>
-
-      <div class="team-member card" style="text-align:center;">
-        <img class="team-photo" src="Dp_image.jpeg" alt="Ritwik - photo">
-        <h4 style="margin-top:0.6rem;">Ritwik</h4>
-        <p style="color:#666;font-size:0.9rem;">Architect</p>
-      </div>
-
-      <div class="team-member card" style="text-align:center;">
-        <img class="team-photo" src="Dp_image.jpeg" alt="Bhavesh - photo">
-        <h4 style="margin-top:0.6rem;">Bhavesh</h4>
-        <p style="color:#666;font-size:0.9rem;">Architect</p>
-      </div>
-
-      <div class="team-member card" style="text-align:center;">
-        <img class="team-photo" src="Dp_image.jpeg" alt="Ishu ki Bandi - photo">
-        <h4 style="margin-top:0.6rem;">Ishu ki Bandi</h4>
-        <p style="color:#666;font-size:0.9rem;">Architect</p>
-      </div>
+      <div class="card"><img src="Dp_image.jpeg" style="border-radius:50%;width:100px;height:100px;margin-bottom:1rem;"><h3>Ishu</h3><p> Architect</p></div>
+      <div class="card"><img src="Dp_image.jpeg" style="border-radius:50%;width:100px;height:100px;margin-bottom:1rem;"><h3>Ritwik</h3><p>Architect</p></div>
+      <div class="card"><img src="Dp_image.jpeg" style="border-radius:50%;width:100px;height:100px;margin-bottom:1rem;"><h3>Bhavesh</h3><p>Architect</p></div>
+      <div class="card"><img src="Dp_image.jpeg" style="border-radius:50%;width:100px;height:100px;margin-bottom:1rem;"><h3>Ishu ki Bandi</h3><p>Architect</p></div>
     </div>
   </div>
 </section>
 
 <section id="contact">
-  <div class="container">
-    <h3 style="font-size:1.75rem;margin-bottom:0.5rem;">Get in Touch</h3>
-    <p style="color:#555;margin-bottom:2rem;">Tell us about your project. We'll get back soon.</p>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem;">
+  <div class="container reveal">
+    <h2 class="section-title">Get in Touch</h2>
+    <p class="section-sub">We’d love to hear about your next project</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(350px,1fr));gap:2rem;align-items:start;">
       <div>
-        <p><strong>Office —</strong><br> Clerk Colony </p>
-        <p style="margin-top:1rem;"><strong>Email —</strong><br> envisionspace.testing@gmail.com</p>
-        <p style="margin-top:1rem;"><strong>Phone —</strong><br> +91 0000000000</p>
+        <p><strong>Office:</strong><br> Clerk Colony, Indore</p><br>
+        <p><strong>Email:</strong><br> envisionspace.testing@gmail.com</p><br>
+        <p><strong>Phone:</strong><br> +91 0000000000</p>
       </div>
-      <!-- FORM: kept exactly as previous floating-label pattern -->
-      <form>
+      <form action="https://formspree.io/f/xnqrvkng" method="POST">
         <div class="field">
-          <input type="text" id="name" placeholder=" " required>
+          <input type="text" name="name" id="name" placeholder=" " required>
           <label for="name">Name</label>
         </div>
         <div class="field">
-          <input type="email" id="email" placeholder=" " required>
+          <input type="email" name="email" id="email" placeholder=" " required>
           <label for="email">Email</label>
         </div>
         <div class="field">
-          <textarea id="message" rows="4" placeholder=" " required></textarea>
+          <textarea name="message" id="message" rows="4" placeholder=" " required></textarea>
           <label for="message">Message</label>
         </div>
-        <button class="btn-primary" type="submit" style="width:100%;font-size:1rem;">Send Message</button>
+        <button type="submit" class="btn-primary" style="width:100%;font-size:1rem;">Send Message</button>
+        <p id="form-success" style="color:green;margin-top:1rem;display:none;">Thank you! Your message has been sent.</p>
       </form>
     </div>
   </div>
 </section>
 
 <footer>
-  <div class="container">
-    <p>© 2025 Envision Space. All rights reserved.</p>
-  </div>
+  <p>© 2025 Envision Space. All rights reserved.</p>
 </footer>
 
-<!-- Modal (dark cinematic) -->
-<div id="modalBackdrop" class="modal-backdrop" aria-hidden="true" role="dialog" aria-modal="true" style="display:none;">
-  <div class="modal" role="document" aria-labelledby="modalTitle">
-    <div class="modal-header">
-      <div>
-        <div id="modalTitle" class="modal-title">Project Title</div>
-        <div id="modalSub" class="modal-sub">Project subtitle</div>
-      </div>
-      <div>
-        <button id="modalClose" class="close-btn" aria-label="Close">✕</button>
-      </div>
-    </div>
-
-    <div class="modal-body">
-      <div class="video-wrap">
-        <div class="video-inner" id="videoContainer">
-          <!-- iframe inserted dynamically -->
-        </div>
-      </div>
-
-      <div class="info">
-        <h4 id="modalInfoTitle">Project</h4>
-        <p id="modalDesc">Description text will appear here.</p>
-        <div style="margin-top:auto;color:#6b7280;font-size:0.9rem">Press Esc or click outside to close.</div>
-      </div>
-    </div>
-
-    <div class="modal-footer">
-      <div style="color:#6b7280">Envision Space — Architecture & Design</div>
-      <div><button id="modalClose2" class="close-btn">Close</button></div>
-    </div>
+<!-- VIDEO MODAL -->
+<div class="modal" id="videoModal">
+  <div class="modal-content">
+    <span class="modal-close">&times;</span>
+    <iframe src="" allowfullscreen></iframe>
   </div>
 </div>
 
 <script>
-  // Reveal on scroll (same pattern)
+  // Scroll animation
   const reveals = document.querySelectorAll(".reveal");
-  function runReveal(){
+  window.addEventListener("scroll", () => {
     for (let el of reveals) {
       const windowHeight = window.innerHeight;
       const revealTop = el.getBoundingClientRect().top;
       if (revealTop < windowHeight - 100) el.classList.add("active");
     }
-  }
-  window.addEventListener("scroll", runReveal, {passive:true});
-  window.addEventListener("load", runReveal);
+  });
 
-  // Simple parallax effect on hero image (keeps previous behaviour)
+  // Hero parallax
   window.addEventListener("scroll", () => {
     const heroImg = document.querySelector(".hero img");
-    if (heroImg) heroImg.style.transform = `translateY(${window.scrollY * 0.15}px)`;
+    if (heroImg) heroImg.style.transform = `translateY(${window.scrollY * 0.2}px)`;
   });
 
-  // Modal logic (unique video per project)
-  const backdrop = document.getElementById('modalBackdrop');
-  const modalClose = document.getElementById('modalClose');
-  const modalClose2 = document.getElementById('modalClose2');
-  const videoContainer = document.getElementById('videoContainer');
-  const modalTitleEl = document.getElementById('modalTitle');
-  const modalSubEl = document.getElementById('modalSub');
-  const modalInfoTitle = document.getElementById('modalInfoTitle');
-  const modalDesc = document.getElementById('modalDesc');
-
-  function openModal({title, sub, desc, videoUrl}) {
-    modalTitleEl.textContent = title;
-    modalSubEl.textContent = sub;
-    modalInfoTitle.textContent = title;
-    modalDesc.textContent = desc;
-
-    // create iframe (autoplay)
-    const iframe = document.createElement('iframe');
-    // ensure embed url contains embed path (we already used embed URLs)
-    iframe.setAttribute('src', videoUrl + (videoUrl.includes('?') ? '&autoplay=1' : '?autoplay=1'));
-    iframe.setAttribute('allow', 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share');
-    iframe.setAttribute('allowfullscreen', '');
-    iframe.style.border = '0';
-
-    videoContainer.innerHTML = '';
-    videoContainer.appendChild(iframe);
-
-    backdrop.style.display = 'flex';
-    // small timeout to allow CSS transitions (we already manage via class if needed)
-    setTimeout(()=> backDropAddOpen(), 10);
-
-    // lock scroll
-    document.documentElement.style.overflow = 'hidden';
-    document.body.style.overflow = 'hidden';
-  }
-
-  function backDropAddOpen(){
-    backdrop.classList.add('open');
-    backdrop.setAttribute('aria-hidden', 'false');
-  }
-
-  function closeModal() {
-    backdrop.classList.remove('open');
-    // remove iframe to stop video
-    videoContainer.innerHTML = '';
-    setTimeout(()=> {
-      backdrop.style.display = 'none';
-      backdrop.setAttribute('aria-hidden', 'true');
-    }, 250);
-    document.documentElement.style.overflow = '';
-    document.body.style.overflow = '';
-  }
-
-  // Click handling on project cards (preserve flip on hover)
-  document.querySelectorAll('.project-card').forEach(card => {
-    card.addEventListener('click', (e) => {
-      // read data attributes
-      const dataset = card.dataset;
-      const data = {
-        title: dataset.title || 'Project',
-        sub: dataset.sub || '',
-        desc: dataset.desc || '',
-        videoUrl: dataset.video || ''
-      };
-      openModal(data);
-    });
-
-    // keyboard support
-    card.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        card.click();
-      }
+  // Modal video functionality
+  const modal = document.getElementById("videoModal");
+  const modalIframe = modal.querySelector("iframe");
+  const closeBtn = modal.querySelector(".modal-close");
+  document.querySelectorAll(".project-card").forEach(card => {
+    card.addEventListener("click", () => {
+      const videoURL = card.getAttribute("data-video");
+      modal.style.display = "flex";
+      modalIframe.src = videoURL + "?autoplay=1";
     });
   });
-
-  // close handlers
-  modalClose.addEventListener('click', closeModal);
-  modalClose2.addEventListener('click', closeModal);
-  backdrop.addEventListener('click', (e) => { if (e.target === backdrop) closeModal(); });
-  window.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
-
-  // focus the close button when modal opens (basic focus management)
-  const obs = new MutationObserver(() => {
-    if (backdrop.classList.contains('open')) {
-      modalClose.focus();
-    }
+  closeBtn.addEventListener("click", () => {
+    modal.style.display = "none";
+    modalIframe.src = "";
   });
-  obs.observe(backdrop, { attributes: true, attributeFilter: ['class'] });
+  window.addEventListener("click", (e) => {
+    if(e.target === modal) { modal.style.display="none"; modalIframe.src=""; }
+  });
 
+  // Form success message
+  const form = document.querySelector("form");
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+    fetch(form.action, {
+      method: "POST",
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    }).then(response => {
+      if (response.ok) {
+        form.reset();
+        document.getElementById("form-success").style.display = "block";
+      } else alert("Oops! There was a problem.");
+    });
+  });
 </script>
 </body>
 </html>
