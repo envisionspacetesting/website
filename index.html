@@ -1,231 +1,411 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Envision Space | Architecture & Design</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Envision Space — Portfolio</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Inter', sans-serif; color: #222; background-color: #f8f9fa; overflow-x: hidden; scroll-behavior: smooth; }
-  header { background: white; position: sticky; top: 0; z-index: 10; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-  .container { max-width: 1200px; margin: 0 auto; padding: 1rem 2rem; }
-  nav a { margin: 0 1rem; text-decoration: none; color: #222; font-weight: 500; transition: color 0.3s; }
-  nav a:hover { color: #059669; }
-  .btn-primary { background: #059669; color: white; padding: 0.75rem 1.5rem; border-radius: 8px; text-decoration: none; transition: 0.3s; }
-  .btn-primary:hover { background: #047857; }
-
-  /* HERO */
-  .hero { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 2rem; padding: 6rem 0; position: relative; overflow: hidden; }
-  .hero img { width: 100%; max-width: 500px; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.15); transform: translateY(0); animation: float 4s ease-in-out infinite; }
-  @keyframes float {
-    0%,100% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
+  :root{
+    --accent:#D4AF37; /* subtle gold if needed */
+    --green:#059669;
+    --bg:#0b0c0f;
+    --muted:#9CA3AF;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+    background:#0f1724; color:#e6eef6; -webkit-font-smoothing:antialiased;
+    line-height:1.45; overflow-x:hidden;
   }
 
-  /* PROJECTS */
-  #projects { background: #fff; padding: 5rem 0; }
-  h2.section-title { font-size: 2rem; text-align: center; margin-bottom: 0.5rem; }
-  p.section-sub { text-align: center; color: #555; margin-bottom: 3rem; }
-  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 2rem; }
-  .project-card { perspective: 1000px; }
-  .card-inner { position: relative; width: 100%; height: 320px; transition: transform 0.8s; transform-style: preserve-3d; }
-  .project-card:hover .card-inner { transform: rotateY(180deg); }
-  .card-front, .card-back {
-    position: absolute; width: 100%; height: 100%; border-radius: 12px;
-    backface-visibility: hidden; box-shadow: 0 6px 20px rgba(0,0,0,0.1); overflow: hidden;
+  /* layout */
+  .container{max-width:1200px;margin:0 auto;padding:1.5rem}
+  header{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);backdrop-filter: blur(4px);position:sticky;top:0;z-index:40;border-bottom:1px solid rgba(255,255,255,0.02)}
+  .nav{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+  .brand{display:flex;align-items:center;gap:.8rem}
+  .logo{width:44px;height:44px;border-radius:8px;background:linear-gradient(135deg,var(--green),#10b981);display:flex;align-items:center;justify-content:center;font-weight:700;color:#032018}
+  nav a{color:#cfe6da;text-decoration:none;margin-left:1rem;font-weight:600;opacity:.95}
+  nav a:hover{color:var(--green);}
+
+  /* hero */
+  .hero{display:flex;gap:2rem;align-items:center;justify-content:space-between;padding:3.5rem 0}
+  .hero .left{max-width:640px}
+  h1{font-size:2.4rem;line-height:1.05;color:#fff;margin-bottom:.6rem}
+  p.lead{color:var(--muted);max-width:56ch;margin-bottom:1rem}
+  .hero .ctas{display:flex;gap:.75rem;margin-top:1rem}
+  .btn{padding:.7rem 1.1rem;border-radius:10px;border:0;cursor:pointer;font-weight:600}
+  .btn-primary{background:var(--green);color:white;box-shadow:0 6px 20px rgba(5,150,105,0.12)}
+  .btn-ghost{background:transparent;color:var(--green);border:1px solid rgba(255,255,255,0.04)}
+
+  /* floating image */
+  .hero-visual{width:46%;min-width:300px;max-width:520px;position:relative}
+  .visual-img{width:100%;border-radius:14px;display:block;box-shadow:0 20px 50px rgba(2,6,23,0.7);transform-origin:center;animation:float 5s ease-in-out infinite}
+  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+
+  /* projects */
+  section{padding:3.5rem 0}
+  .section-title{font-size:1.6rem;margin-bottom:.4rem;color:#f8fafc}
+  .section-sub{color:var(--muted);margin-bottom:1.25rem}
+
+  .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem}
+
+  /* flip card */
+  .project-card{perspective:1400px}
+  .card-inner{position:relative;width:100%;height:320px;transition:transform .85s cubic-bezier(.2,.9,.2,1);transform-style:preserve-3d;border-radius:14px}
+  .project-card:hover .card-inner{transform:rotateY(180deg)}
+  .card-face{position:absolute;inset:0;border-radius:14px;overflow:hidden;backface-visibility:hidden;box-shadow:0 10px 30px rgba(2,6,23,0.6)}
+  .card-front img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.95)}
+  .card-front .meta{position:absolute;left:1rem;bottom:1rem;background:linear-gradient(90deg,rgba(2,6,23,0.6),rgba(2,6,23,0.15));padding:.6rem 1rem;border-radius:8px;color:#fff}
+  .card-front .meta h4{font-size:1.05rem;margin-bottom:.15rem}
+  .card-back{transform:rotateY(180deg);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1.2rem;background:linear-gradient(180deg,#021017,#03302a);color:#e7fff5}
+  .card-back h3{margin-bottom:.3rem}
+  .card-back p{color:#bfe6d0;text-align:center;font-size:.95rem}
+
+  /* clickable overlay hint */
+  .click-hint{position:absolute;right:1rem;top:1rem;background:rgba(0,0,0,0.45);padding:.35rem .6rem;border-radius:999px;font-size:.85rem;color:#fff}
+
+  /* modal */
+  .modal-backdrop{
+    position:fixed;inset:0;background:rgba(3,6,11,0.6);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;z-index:80;opacity:0;pointer-events:none;transition:opacity .25s ease;
   }
-  .card-front img { width: 100%; height: 100%; object-fit: cover; }
-  .card-back {
-    background: #059669; color: white; display: flex; flex-direction: column; align-items: center; justify-content: center; transform: rotateY(180deg); padding: 1rem;
+  .modal-backdrop.open{opacity:1;pointer-events:auto}
+  .modal{
+    width:90%;max-width:1000px;border-radius:14px;overflow:hidden;background:linear-gradient(180deg,rgba(10,12,15,0.98),rgba(6,8,12,0.98));box-shadow:0 30px 90px rgba(2,6,23,0.8);transform:translateY(10px) scale(.98);opacity:0;transition:all .28s cubic-bezier(.2,.9,.2,1);
+  }
+  .modal-backdrop.open .modal{transform:translateY(0) scale(1);opacity:1}
+
+  .modal-header{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem;border-bottom:1px solid rgba(255,255,255,0.03)}
+  .modal-title{font-weight:700}
+  .modal-sub{color:var(--muted);font-size:.9rem;margin-top:.18rem}
+  .modal-body{display:flex;gap:1rem;padding:1rem;background:linear-gradient(90deg,rgba(255,255,255,0.01),transparent)}
+  .video-wrap{flex:1 1 60%;min-height:260px;border-radius:8px;overflow:hidden;background:#000}
+  .info{flex:1 1 40%;padding:0.75rem 1rem;display:flex;flex-direction:column;gap:.6rem;color:#d9efe5}
+  .info p{color:#cdeadf}
+
+  /* responsive iframe */
+  .video-inner{position:relative;width:100%;height:0;padding-bottom:56.25%}
+  .video-inner iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+
+  .modal-footer{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem;border-top:1px solid rgba(255,255,255,0.03)}
+  .close-btn{background:transparent;border:1px solid rgba(255,255,255,0.06);color:#fff;padding:.4rem .6rem;border-radius:8px;cursor:pointer}
+
+  /* smaller screens */
+  @media (max-width:880px){
+    .modal-body{flex-direction:column}
+    .hero{flex-direction:column-reverse;align-items:flex-start}
+    .hero-visual{width:100%}
+    .card-inner{height:260px}
+  }
+  @media (max-width:520px){
+    h1{font-size:1.6rem}
+    .card-inner{height:220px}
   }
 
-  /* SERVICES & TEAM */
-  .grid { display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); margin-top: 3rem; }
-  .card { background: #fff; border-radius: 10px; padding: 2rem; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.08); transition: 0.3s; }
-  .card:hover { transform: translateY(-5px); }
-
-  /* CONTACT FORM */
-  #contact { padding: 5rem 0; background: linear-gradient(135deg, #ecfdf5, #f8fafc); }
-  form { background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
-  form .field { position: relative; margin-bottom: 1.5rem; }
-  form input, form textarea {
-    width: 100%; padding: 1rem; border: 2px solid #ccc; border-radius: 8px; font-size: 1rem; outline: none; background: transparent;
-    transition: border-color 0.3s, box-shadow 0.3s;
-  }
-  form input:focus, form textarea:focus {
-    border-color: #059669; box-shadow: 0 0 10px rgba(5,150,105,0.2);
-  }
-  form label {
-    position: absolute; top: 1rem; left: 1rem; color: #777; pointer-events: none; transition: 0.3s;
-  }
-  form input:focus + label, form input:not(:placeholder-shown) + label,
-  form textarea:focus + label, form textarea:not(:placeholder-shown) + label {
-    top: -0.6rem; left: 0.8rem; background: white; padding: 0 0.4rem; color: #059669; font-size: 0.85rem;
-  }
-
-  footer { background: #111827; color: #ccc; text-align: center; padding: 2rem; margin-top: 3rem; }
-
-  /* SCROLL ANIMATIONS */
-  .reveal { opacity: 0; transform: translateY(40px); transition: all 1s ease; }
-  .reveal.active { opacity: 1; transform: translateY(0); }
+  /* reveal animations */
+  .reveal{opacity:0;transform:translateY(26px);transition:all .9s cubic-bezier(.2,.85,.2,1)}
+  .reveal.active{opacity:1;transform:none}
 </style>
 </head>
-
 <body>
-<header>
-  <div class="container" style="display:flex;align-items:center;justify-content:space-between;">
-    <div style="display:flex;align-items:center;gap:0.7rem;">
-      <div style="background:#059669;color:white;padding:0.6rem 0.9rem;border-radius:8px;font-weight:700;">ES</div>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="logo">ES</div>
+        <div>
+          <div style="font-weight:700;color:#e6f3ef">Envision Space</div>
+          <div style="font-size:.82rem;color:var(--muted)">Design • Build • Inspire</div>
+        </div>
+      </div>
+
+      <nav>
+        <a href="#projects">Projects</a>
+        <a href="#services">Services</a>
+        <a href="#team">Team</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
       <div>
-        <h1 style="font-size:1.4rem;">Envision Space</h1>
-        <p style="font-size:0.9rem;color:#6b7280;">Design • Build • Inspire</p>
+        <button class="btn btn-primary" onclick="document.querySelector('#contact').scrollIntoView({behavior:'smooth'})">Get a Quote</button>
       </div>
     </div>
-    <nav>
-      <a href="#projects">Projects</a>
-      <a href="#services">Services</a>
-      <a href="#team">Team</a>
-      <a href="#contact">Contact</a>
-    </nav>
-    <a href="#contact" class="btn-primary">Get a Quote</a>
-  </div>
-</header>
+  </header>
 
-<section class="hero container">
-  <div class="reveal">
-    <h2 style="font-size:2.8rem;line-height:1.2;">Thoughtful Architecture,<br>Timeless Spaces</h2>
-    <p style="margin-top:1rem;color:#555;max-width:500px;">We design spaces that tell stories. From concept to completion, we partner with you to create meaningful, sustainable, and lasting environments.</p>
-    <div style="margin-top:1.5rem;display:flex;gap:1rem;">
-      <a href="#projects" class="btn-primary">View Projects</a>
-      <a href="#contact" class="btn-primary" style="background:#fff;color:#059669;border:2px solid #059669;">Contact Us</a>
-    </div>
-  </div>
-  <img src="ishuimage1.jpeg" alt="Architecture" class="reveal"/>
-</section>
+  <main class="container" style="padding-top:1.25rem">
+    <section class="hero">
+      <div class="left reveal">
+        <h1>Thoughtful architecture, timeless spaces</h1>
+        <p class="lead">We design spaces that tell stories — considered form, materiality and light. From concept to completion, we partner with clients to craft meaningful, sustainable environments.</p>
+        <div class="ctas">
+          <button class="btn btn-primary" onclick="document.querySelector('#projects').scrollIntoView({behavior:'smooth'})">View Projects</button>
+          <button class="btn btn-ghost" onclick="document.querySelector('#contact').scrollIntoView({behavior:'smooth'})">Contact Us</button>
+        </div>
+      </div>
 
-<section id="projects">
-  <div class="container">
-    <h2 class="section-title reveal">Selected Projects</h2>
-    <p class="section-sub reveal">Hover to explore project details</p>
-    <div class="projects-grid">
-      <div class="project-card reveal">
-        <div class="card-inner">
-          <div class="card-front"><img src="ishuimage2.jpeg" alt="Project 1"></div>
-          <div class="card-back">
-            <h3>Urban Serenity</h3>
-            <p>Delhi • Residential • 2024</p>
-            <p style="margin-top:1rem;">A calm home built with minimal forms and natural light.</p>
+      <div class="hero-visual reveal" aria-hidden="true">
+        <img class="visual-img" src="ishuimage1.jpeg" alt="Featured architecture image">
+      </div>
+    </section>
+
+    <section id="projects" aria-labelledby="projects-heading">
+      <h3 class="section-title reveal" id="projects-heading">Selected Projects</h3>
+      <p class="section-sub reveal">Hover to reveal quick details — click to explore the project case study.</p>
+
+      <div class="projects-grid">
+        <!-- Project 1 -->
+        <article class="project-card reveal" tabindex="0" role="button"
+          data-title="Urban Serenity"
+          data-sub="Delhi • Residential • 2024"
+          data-desc="A calm home built with minimal forms and abundant natural light. The design emphasizes quiet spaces and a restrained material palette."
+          data-video="https://www.youtube.com/embed/8Lgi_X8VC-A?rel=0"
+        >
+          <div class="card-inner">
+            <div class="card-face card-front">
+              <img src="ishuimage2.jpeg" alt="Urban Serenity">
+              <div class="meta">
+                <h4>Urban Serenity</h4>
+                <div style="font-size:.85rem;color:rgba(255,255,255,0.9)">Delhi • Residential</div>
+              </div>
+              <div class="click-hint">View</div>
+            </div>
+
+            <div class="card-face card-back">
+              <h3>Urban Serenity</h3>
+              <p>Minimal, light-filled home designed for calm living.</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 2 -->
+        <article class="project-card reveal" tabindex="0" role="button"
+          data-title="Modern Villa"
+          data-sub="Jaipur • Luxury Villa"
+          data-desc="A bold, fluid villa where glass and greenery meet. The layout opens onto courtyards that connect interiors with landscape."
+          data-video="https://www.youtube.com/embed/-YlmnPh-6rE?rel=0"
+        >
+          <div class="card-inner">
+            <div class="card-face card-front">
+              <img src="ishuimage3.jpeg" alt="Modern Villa">
+              <div class="meta">
+                <h4>Modern Villa</h4>
+                <div style="font-size:.85rem;color:rgba(255,255,255,0.9)">Jaipur • Villa</div>
+              </div>
+              <div class="click-hint">View</div>
+            </div>
+
+            <div class="card-face card-back">
+              <h3>Modern Villa</h3>
+              <p>Fluid geometry and indoor-outdoor connections.</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 3 -->
+        <article class="project-card reveal" tabindex="0" role="button"
+          data-title="Corporate HQ"
+          data-sub="Gurgaon • Commercial"
+          data-desc="An innovative workplace that prioritizes well-being, flexible collaboration zones, and daylight strategies across floors."
+          data-video="https://www.youtube.com/embed/B4-HoKdW6j0?rel=0"
+        >
+          <div class="card-inner">
+            <div class="card-face card-front">
+              <img src="ishuimage4.jpeg" alt="Corporate HQ">
+              <div class="meta">
+                <h4>Corporate HQ</h4>
+                <div style="font-size:.85rem;color:rgba(255,255,255,0.9)">Gurgaon • Commercial</div>
+              </div>
+              <div class="click-hint">View</div>
+            </div>
+
+            <div class="card-face card-back">
+              <h3>Corporate HQ</h3>
+              <p>Workplace focused on health and collaboration.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="services" style="margin-top:2.5rem">
+      <h3 class="section-title reveal">Our Services</h3>
+      <p class="section-sub reveal">From concept sketches to final handover</p>
+      <div class="grid reveal">
+        <div class="card"><h4>Architectural Design</h4><p style="color:#bfe6d0">End-to-end design solutions with sustainability at core.</p></div>
+        <div class="card"><h4>Interior Design</h4><p style="color:#bfe6d0">Balanced, aesthetic and highly functional interiors.</p></div>
+        <div class="card"><h4>Project Management</h4><p style="color:#bfe6d0">Quality-driven delivery and coordination across teams.</p></div>
+      </div>
+    </section>
+
+    <section id="team" style="margin-top:2.5rem">
+      <h3 class="section-title reveal">Our Team</h3>
+      <p class="section-sub reveal">Creative minds behind every space</p>
+      <div class="grid reveal">
+        <div class="card"><strong>Ishu</strong><p style="color:#bfe6d0">Principal Architect</p></div>
+        <div class="card"><strong>Ritwik</strong><p style="color:#bfe6d0">Architect</p></div>
+        <div class="card"><strong>Bhavesh</strong><p style="color:#bfe6d0">Architect</p></div>
+        <div class="card"><strong>Ishu ki Bandi</strong><p style="color:#bfe6d0">Architect</p></div>
+      </div>
+    </section>
+
+    <section id="contact" style="margin-top:2.5rem;padding-bottom:4rem">
+      <h3 class="section-title reveal">Get in Touch</h3>
+      <p class="section-sub reveal">We’d love to hear about your next project</p>
+      <div class="grid reveal" style="grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.25rem;align-items:start">
+        <div class="" style="padding:1rem 0">
+          <p><strong>Office:</strong><br>Clerk Colony, Indore</p>
+          <p style="margin-top:.75rem"><strong>Email:</strong><br>envisionspace.testing@gmail.com</p>
+          <p style="margin-top:.75rem"><strong>Phone:</strong><br>+91 0000000000</p>
+        </div>
+
+        <form style="background:linear-gradient(180deg, #071014, #061018);padding:1rem;border-radius:12px" onsubmit="event.preventDefault(); alert('Thanks — form submission demo. Implement server-side to capture messages.');">
+          <div style="display:flex;gap:.6rem;margin-bottom:.6rem">
+            <input required placeholder="Name" style="flex:1;padding:.75rem;border-radius:8px;border:1px solid rgba(255,255,255,0.05);background:transparent;color:#e6f3ef">
+            <input required placeholder="Email" style="flex:1;padding:.75rem;border-radius:8px;border:1px solid rgba(255,255,255,0.05);background:transparent;color:#e6f3ef">
+          </div>
+          <textarea required placeholder="Tell us about your project" style="width:100%;padding:.75rem;border-radius:8px;border:1px solid rgba(255,255,255,0.05);background:transparent;color:#e6f3ef;min-height:120px"></textarea>
+          <div style="margin-top:.75rem;display:flex;gap:.6rem">
+            <button class="btn btn-primary" type="submit" style="flex:1">Send Message</button>
+            <button type="reset" class="btn btn-ghost" style="flex:0">Clear</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <footer style="padding-top:2rem;padding-bottom:4rem;color:var(--muted);text-align:center">
+      © 2025 Envision Space. All rights reserved.
+    </footer>
+  </main>
+
+  <!-- Modal -->
+  <div id="modalBackdrop" class="modal-backdrop" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal" role="document" aria-labelledby="modalTitle">
+      <div class="modal-header">
+        <div>
+          <div id="modalTitle" class="modal-title">Project Title</div>
+          <div id="modalSub" class="modal-sub">Project subtitle</div>
+        </div>
+        <div>
+          <button id="modalClose" class="close-btn" aria-label="Close">Close ✕</button>
+        </div>
+      </div>
+
+      <div class="modal-body">
+        <div class="video-wrap">
+          <div class="video-inner" id="videoContainer">
+            <!-- iframe appended dynamically -->
           </div>
         </div>
-      </div>
-      <div class="project-card reveal">
-        <div class="card-inner">
-          <div class="card-front"><img src="ishuimage3.jpeg" alt="Project 2"></div>
-          <div class="card-back">
-            <h3>Modern Villa</h3>
-            <p>Jaipur • Luxury Villa</p>
-            <p style="margin-top:1rem;">A bold, fluid space blending glass and greenery.</p>
-          </div>
+
+        <div class="info">
+          <h4 id="modalInfoTitle">Project</h4>
+          <p id="modalDesc">Description text will appear here.</p>
+          <div style="margin-top:auto;color:var(--muted);font-size:.9rem">Press Esc or click outside to close.</div>
         </div>
       </div>
-      <div class="project-card reveal">
-        <div class="card-inner">
-          <div class="card-front"><img src="ishuimage4.jpeg" alt="Project 3"></div>
-          <div class="card-back">
-            <h3>Corporate HQ</h3>
-            <p>Gurgaon • Commercial</p>
-            <p style="margin-top:1rem;">Innovative workplace design focusing on well-being.</p>
-          </div>
-        </div>
+
+      <div class="modal-footer">
+        <div style="color:var(--muted)">Envision Space — Architecture & Design</div>
+        <div><button id="modalClose2" class="close-btn">Close</button></div>
       </div>
     </div>
   </div>
-</section>
-
-<section id="services">
-  <div class="container reveal">
-    <h2 class="section-title">Our Services</h2>
-    <p class="section-sub">From concept sketches to final handover</p>
-    <div class="grid">
-      <div class="card">
-        <h3>Architectural Design</h3>
-        <p>End-to-end design solutions with sustainability at core.</p>
-      </div>
-      <div class="card">
-        <h3>Interior Design</h3>
-        <p>Creating balanced, aesthetic, and functional interiors.</p>
-      </div>
-      <div class="card">
-        <h3>Project Management</h3>
-        <p>Timely delivery and quality assurance throughout execution.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="team">
-  <div class="container reveal">
-    <h2 class="section-title">Our Team</h2>
-    <p class="section-sub">Creative minds behind every space</p>
-    <div class="grid">
-      <div class="card"><h3>Ishu</h3><p> Architect</p></div>
-      <div class="card"><h3>Ritwik</h3><p>Architect</p></div>
-      <div class="card"><h3>Bhavesh</h3><p>Architect</p></div>
-      <div class="card"><h3>Ishu ki Bandi</h3><p>Architect</p></div>
-    </div>
-  </div>
-</section>
-
-<section id="contact">
-  <div class="container reveal">
-    <h2 class="section-title">Get in Touch</h2>
-    <p class="section-sub">We’d love to hear about your next project</p>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(350px,1fr));gap:2rem;align-items:start;">
-      <div>
-        <p><strong>Office:</strong><br> Clerk Colony, Indore</p><br>
-        <p><strong>Email:</strong><br> envisionspace.testing@gmail.com</p><br>
-        <p><strong>Phone:</strong><br> +91 0000000000</p>
-      </div>
-      <form>
-        <div class="field">
-          <input type="text" id="name" placeholder=" " required>
-          <label for="name">Name</label>
-        </div>
-        <div class="field">
-          <input type="email" id="email" placeholder=" " required>
-          <label for="email">Email</label>
-        </div>
-        <div class="field">
-          <textarea id="message" rows="4" placeholder=" " required></textarea>
-          <label for="message">Message</label>
-        </div>
-        <button type="submit" class="btn-primary" style="width:100%;font-size:1rem;">Send Message</button>
-      </form>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <p>© 2025 Envision Space. All rights reserved.</p>
-</footer>
 
 <script>
-  // Scroll animation
-  const reveals = document.querySelectorAll(".reveal");
-  window.addEventListener("scroll", () => {
-    for (let el of reveals) {
-      const windowHeight = window.innerHeight;
-      const revealTop = el.getBoundingClientRect().top;
-      if (revealTop < windowHeight - 100) el.classList.add("active");
+  // Simple scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const revealOnScroll = () => {
+    for (const el of revealEls) {
+      const top = el.getBoundingClientRect().top;
+      if (top < (window.innerHeight - 80)) el.classList.add('active');
     }
+  };
+  window.addEventListener('scroll', revealOnScroll, {passive:true});
+  window.addEventListener('load', revealOnScroll);
+
+  // Modal logic
+  const backdrop = document.getElementById('modalBackdrop');
+  const modalClose = document.getElementById('modalClose');
+  const modalClose2 = document.getElementById('modalClose2');
+  const videoContainer = document.getElementById('videoContainer');
+  const modalTitleEl = document.getElementById('modalTitle');
+  const modalSubEl = document.getElementById('modalSub');
+  const modalInfoTitle = document.getElementById('modalInfoTitle');
+  const modalDesc = document.getElementById('modalDesc');
+
+  // helper to open modal with data
+  function openModal({title, sub, desc, videoUrl}){
+    modalTitleEl.textContent = title;
+    modalSubEl.textContent = sub;
+    modalInfoTitle.textContent = title;
+    modalDesc.textContent = desc;
+
+    // create iframe with autoplay=1 (note: some browsers may block autoplay if not muted)
+    const iframe = document.createElement('iframe');
+    iframe.setAttribute('src', videoUrl + (videoUrl.includes('?') ? '&autoplay=1' : '?autoplay=1'));
+    iframe.setAttribute('allow', 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share');
+    iframe.setAttribute('allowfullscreen', '');
+    iframe.style.border = '0';
+    // clear existing and append
+    videoContainer.innerHTML = '';
+    videoContainer.appendChild(iframe);
+
+    backdrop.classList.add('open');
+    backdrop.setAttribute('aria-hidden', 'false');
+    // lock scroll
+    document.documentElement.style.overflow = 'hidden';
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal(){
+    backdrop.classList.remove('open');
+    backdrop.setAttribute('aria-hidden', 'true');
+    // stop video by removing iframe
+    videoContainer.innerHTML = '';
+    document.documentElement.style.overflow = '';
+    document.body.style.overflow = '';
+  }
+
+  // attach click to cards
+  document.querySelectorAll('.project-card').forEach(card => {
+    card.addEventListener('click', (ev)=>{
+      // prevent opening modal when user clicks focusable controls (if any in future)
+      const dataset = card.dataset;
+      const data = {
+        title: dataset.title || 'Project',
+        sub: dataset.sub || '',
+        desc: dataset.desc || '',
+        videoUrl: dataset.video || ''
+      };
+      openModal(data);
+    });
+
+    // keyboard accessibility (Enter/Space)
+    card.addEventListener('keydown', (e)=>{
+      if(e.key === 'Enter' || e.key === ' '){
+        e.preventDefault();
+        card.click();
+      }
+    });
   });
 
-  // Simple parallax effect on hero image
-  window.addEventListener("scroll", () => {
-    const heroImg = document.querySelector(".hero img");
-    if (heroImg) heroImg.style.transform = `translateY(${window.scrollY * 0.2}px)`;
+  // close handlers
+  modalClose.addEventListener('click', closeModal);
+  modalClose2.addEventListener('click', closeModal);
+  backdrop.addEventListener('click', (e)=>{
+    if(e.target === backdrop) closeModal();
   });
+  window.addEventListener('keydown', (e)=>{
+    if(e.key === 'Escape') closeModal();
+  });
+
+  // ensure focus trap basic (put focus on close when opened)
+  const observer = new MutationObserver(() => {
+    if (backdrop.classList.contains('open')) {
+      modalClose.focus();
+    }
+  });
+  observer.observe(backdrop, {attributes:true, attributeFilter:['class']});
 </script>
 </body>
 </html>
