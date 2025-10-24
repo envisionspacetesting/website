@@ -1,4 +1,4 @@
-// Scroll animation
+// ===== Scroll reveal animation =====
 const reveals = document.querySelectorAll(".reveal");
 window.addEventListener("scroll", () => {
   for (let el of reveals) {
@@ -8,31 +8,26 @@ window.addEventListener("scroll", () => {
   }
 });
 
-// Hero parallax
+// ===== Hero parallax =====
 window.addEventListener("scroll", () => {
   const heroImg = document.querySelector(".hero img");
   if (heroImg) heroImg.style.transform = `translateY(${window.scrollY * 0.2}px)`;
 });
 
-// ======= Modal video functionality (for local .mp4 videos) =======
+// ===== YouTube modal functionality =====
 const modal = document.getElementById("videoModal");
-const videoElement = document.getElementById("modalVideo");
-const videoSource = videoElement.querySelector("source");
+const iframe = document.getElementById("modalIframe");
 const modalInfo = document.getElementById("modalInfo");
 const closeBtn = document.getElementById("closeModal");
 
-// When user clicks on any project card
+// Open modal on project card click
 document.querySelectorAll(".project-card").forEach(card => {
   card.addEventListener("click", () => {
-    const videoSrc = card.getAttribute("data-video");
-    const infoText = card.getAttribute("data-info");
+    const videoUrl = card.getAttribute("data-video");  // YouTube link
+    const infoText = card.getAttribute("data-info");   // Project description
 
-    // Update video and info dynamically
-    videoSource.src = videoSrc;
-    videoElement.load();
+    iframe.src = videoUrl + "?autoplay=1&rel=0";
     modalInfo.innerHTML = `<p>${infoText}</p>`;
-
-    // Show modal
     modal.style.display = "flex";
   });
 });
@@ -40,18 +35,18 @@ document.querySelectorAll(".project-card").forEach(card => {
 // Close modal on red cross
 closeBtn.addEventListener("click", () => {
   modal.style.display = "none";
-  videoElement.pause();
+  iframe.src = "";
 });
 
-// Also close modal when clicking outside content
+// Close modal when clicking outside the content
 window.addEventListener("click", (e) => {
   if (e.target === modal) {
     modal.style.display = "none";
-    videoElement.pause();
+    iframe.src = "";
   }
 });
 
-// ======= Form submission =======
+// ===== Form submission =====
 const form = document.querySelector("form");
 if (form) {
   form.addEventListener("submit", e => {
