@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Urban Serenity | Envision Space</title>
+<link rel="icon" href="../favicon.ico" type="image/x-icon">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin:0; padding:0; }
+  body { font-family:'Inter',sans-serif; background:#f8f9fa; color:#222; scroll-behavior: smooth; }
+  a { text-decoration:none; color:inherit; }
+  
+  /* Header */
+  header { background:#fff; position:sticky; top:0; z-index:10; box-shadow:0 2px 8px rgba(0,0,0,0.1); }
+  .container { max-width:1200px; margin:0 auto; padding:1rem 2rem; display:flex; align-items:center; justify-content:space-between; }
+  nav a { margin:0 1rem; color:#222; font-weight:500; transition:0.3s; }
+  nav a:hover { color:#059669; }
+  .btn-primary { background:#059669; color:#fff; padding:0.75rem 1.5rem; border-radius:8px; transition:0.3s; }
+  .btn-primary:hover { background:#047857; }
+
+  /* Project Box */
+  .project-box { max-width:900px; margin:4rem auto; padding:2.5rem 3rem; background:#fff; border-radius:12px; box-shadow:0 8px 30px rgba(0,0,0,0.2); }
+  .project-box h1 { font-size:2.5rem; margin-bottom:0.5rem; text-align:center; }
+  .project-box p.meta { text-align:center; color:#555; margin-bottom:2rem; font-style:italic; }
+
+  .video-container { position:relative; padding-bottom:56.25%; height:0; margin-bottom:2rem; border-radius:12px; overflow:hidden; }
+  .video-container iframe { position:absolute; top:0; left:0; width:100%; height:100%; border:none; }
+
+  .description { line-height:1.6; font-size:1rem; color:#333; }
+
+  /* Footer */
+  footer { background:#111827; color:#ccc; padding:2rem; margin-top:3rem; }
+  footer h2 { font-size:1.4rem; margin-bottom:1rem; text-align:center; }
+  .footer-info { display:flex; flex-wrap:wrap; gap:2rem; justify-content:center; margin-bottom:1.5rem; }
+  .footer-info div { min-width:200px; text-align:center; }
+  .footer-info span { font-weight:bold; display:block; margin-bottom:0.3rem; }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+  <div class="container">
+    <a href="../index.html"><img src="../logo.jpeg" alt="Envision Space Logo" style="height:55px; width:auto; border-radius:8px;"></a>
+    <nav>
+      <a href="../index.html#projects">Projects</a>
+      <a href="../index.html#services">Services</a>
+      <a href="../index.html#team">Team</a>
+      <a href="../index.html#contact">Contact</a>
+    </nav>
+    <a href="../index.html#contact" class="btn-primary">Get a Quote</a>
+  </div>
+</header>
+
+<!-- Project Box -->
+<div class="project-box">
+  <h1>Urban Serenity</h1>
+  <p class="meta">Delhi • Residential • 2024</p>
+
+  <div class="video-container">
+    <iframe src="https://www.youtube.com/embed/L3rUl1l3Q18" allowfullscreen></iframe>
+  </div>
+
+  <div class="description">
+    <p>With a built up area of over 45,000 sq ft, The Hinge is a mansion combining two of four villas commissioned to ‪studioessteam‬. This has been designed for the family of Mr. Arjanbhai Dholakia of SRK Exports, one of the global leaders in Diamond industry. This project houses independent villas for his two sons - Mr. Ishver Dholakia and Mr. Akshay Dholakia, and is a part of a larger residential campus.</p>
+
+    <p>The villa is thoughtfully planned to cater to the distinct needs of two families while presenting a unified architectural form. It is essentially two homes combined into one expansive structure, connected by a central rotunda that serves as a grand living space. Each of the two homes has eight bedrooms, living and family rooms, as well as elaborate kitchen and dining areas. The design ensures privacy for both families while promoting communal living through shared spaces.</p>
+
+    <p>This interesting villa was designed and constructed in a record time of 15 months. It endeavours to capture the grandeur of an American Neo-Classical Villa as well as elegant and functional Modern living.</p>
+  </div>
+</div>
+
+<!-- Footer / Contact -->
+<section id="contact">
+  <div class="container" style="max-width:900px;">
+    <h2>Get in Touch</h2>
+    <p style="text-align:center;margin-bottom:2rem;">We’d love to hear about your next project</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem;align-items:start;">
+
+      <div>
+        <p><strong>Office:</strong><br>Clerk Colony, Indore</p>
+        <p><strong>Email:</strong><br>envisionspace.testing@gmail.com</p>
+        <p><strong>Phone:</strong><br>+91 0000000000</p>
+      </div>
+
+      <form action="https://formspree.io/f/mgvnjjej" method="POST">
+        <div style="margin-bottom:1.5rem; position:relative;">
+          <input type="text" name="name" placeholder=" " required style="width:100%;padding:1rem;border:2px solid #ccc;border-radius:8px;">
+          <label style="position:absolute;top:1rem;left:1rem;color:#777;pointer-events:none;">Name</label>
+        </div>
+        <div style="margin-bottom:1.5rem; position:relative;">
+          <input type="email" name="email" placeholder=" " required style="width:100%;padding:1rem;border:2px solid #ccc;border-radius:8px;">
+          <label style="position:absolute;top:1rem;left:1rem;color:#777;pointer-events:none;">Email</label>
+        </div>
+        <div style="margin-bottom:1.5rem; position:relative;">
+          <textarea name="message" rows="4" placeholder=" " required style="width:100%;padding:1rem;border:2px solid #ccc;border-radius:8px;"></textarea>
+          <label style="position:absolute;top:1rem;left:1rem;color:#777;pointer-events:none;">Message</label>
+        </div>
+        <button type="submit" class="btn-primary" style="width:100%;">Send Message</button>
+        <p id="form-success" style="color:green;margin-top:1rem;display:none;">Thank you! Your message has been sent.</p>
+      </form>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <h2>Connect With Us</h2>
+  <div class="footer-info">
+    <div><span>Address:</span>Clerk Colony, Indore</div>
+    <div><span>Phone:</span>+91 0000000000</div>
+    <div><span>Email:</span>envisionspace.testing@gmail.com</div>
+  </div>
+  <div style="text-align:center;"><a href="#contact" class="btn-primary">Get in Touch</a></div>
+</footer>
+
+<script>
+  const form = document.querySelector("form");
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+    fetch(form.action, {
+      method: "POST",
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    }).then(response => {
+      if(response.ok) {
+        form.reset();
+        document.getElementById("form-success").style.display="block";
+      } else alert("Oops! There was a problem.");
+    });
+  });
+</script>
+</body>
+</html>
