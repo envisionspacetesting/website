@@ -14,48 +14,60 @@ window.addEventListener("scroll", () => {
   if (heroImg) heroImg.style.transform = `translateY(${window.scrollY * 0.2}px)`;
 });
 
-// Modal video functionality
+// ======= Modal video functionality (for local .mp4 videos) =======
 const modal = document.getElementById("videoModal");
-const modalIframe = modal.querySelector("iframe");
-const modalDesc = modal.querySelector(".modal-description");
-const closeBtn = modal.querySelector(".modal-close");
-const commentsList = document.getElementById("comments-list");
-const commentInput = document.getElementById("comment-input");
-const commentBtn = document.getElementById("comment-btn");
+const videoElement = document.getElementById("modalVideo");
+const videoSource = videoElement.querySelector("source");
+const modalInfo = document.getElementById("modalInfo");
+const closeBtn = document.getElementById("closeModal");
 
+// When user clicks on any project card
 document.querySelectorAll(".project-card").forEach(card => {
   card.addEventListener("click", () => {
+    const videoSrc = card.getAttribute("data-video");
+    const infoText = card.getAttribute("data-info");
+
+    // Update video and info dynamically
+    videoSource.src = videoSrc;
+    videoElement.load();
+    modalInfo.innerHTML = `<p>${infoText}</p>`;
+
+    // Show modal
     modal.style.display = "flex";
-    modalIframe.src = card.getAttribute("data-video") + "?autoplay=1";
-    modalDesc.textContent = card.getAttribute("data-description");
-    commentsList.innerHTML = ""; // reset comments
   });
 });
 
-closeBtn.addEventListener("click", () => { modal.style.display = "none"; modalIframe.src = ""; });
-window.addEventListener("click", (e) => { if(e.target === modal){ modal.style.display="none"; modalIframe.src=""; }});
+// Close modal on red cross
+closeBtn.addEventListener("click", () => {
+  modal.style.display = "none";
+  videoElement.pause();
+});
 
-// Comment functionality
-commentBtn.addEventListener("click", () => {
-  const val = commentInput.value.trim();
-  if(val){
-    const div = document.createElement("div");
-    div.textContent = val;
-    commentsList.appendChild(div);
-    commentInput.value = "";
+// Also close modal when clicking outside content
+window.addEventListener("click", (e) => {
+  if (e.target === modal) {
+    modal.style.display = "none";
+    videoElement.pause();
   }
 });
 
-// Form submission
+// ======= Form submission =======
 const form = document.querySelector("form");
-form.addEventListener("submit", e => {
-  e.preventDefault();
-  fetch(form.action, {
-    method:"POST",
-    body: new FormData(form),
-    headers: {'Accept':'application/json'}
-  }).then(response => {
-    if(response.ok){ form.reset(); document.getElementById("form-success").style.display="block"; }
-    else alert("Oops! There was a problem.");
+if (form) {
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+    fetch(form.action, {
+      method: "POST",
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    }).then(response => {
+      if (response.ok) {
+        form.reset();
+        const successMsg = document.getElementById("form-success");
+        if (successMsg) successMsg.style.display = "block";
+      } else {
+        alert("Oops! There was a problem.");
+      }
+    });
   });
-});
+}
