@@ -1,4 +1,4 @@
-// ===== Scroll reveal animation =====
+// Scroll reveal animation
 const reveals = document.querySelectorAll(".reveal");
 window.addEventListener("scroll", () => {
   for (let el of reveals) {
@@ -8,7 +8,7 @@ window.addEventListener("scroll", () => {
   }
 });
 
-// ===== Hero parallax =====
+// Hero parallax
 window.addEventListener("scroll", () => {
   const heroImg = document.querySelector(".hero img");
   if (heroImg) heroImg.style.transform = `translateY(${window.scrollY * 0.2}px)`;
@@ -20,25 +20,37 @@ const iframe = document.getElementById("modalIframe");
 const modalInfo = document.getElementById("modalInfo");
 const closeBtn = document.getElementById("closeModal");
 
-// Open modal on project card click
+// Example default description (can be changed per project)
+const defaultDesc = `
+<p>With a built up area of over 45,000 sq ft, The Hinge is a mansion combining two of four villas commissioned to ‪@studioessteam‬. This has been designed for the family of Mr. Arjanbhai Dholakia of SRK Exports, one of the global leaders in Diamond industry. This project houses independent villas for his two sons - Mr. Ishver Dholakia and Mr. Akshay Dholakia, and is a part of a larger residential campus.</p>
+
+<p>The villa is thoughtfully planned to cater to the distinct needs of two families while presenting a unified architectural form. It is essentially two homes combined into one expansive structure, connected by a central rotunda that serves as a grand living space. Each of the two homes has eight bedrooms, living and family rooms, as well as elaborate kitchen and dining areas. The design ensures privacy for both families while promoting communal living through shared spaces.</p>
+
+<p>This interesting villa was designed and constructed in a record time of 15 months. It endeavours to capture the grandeur of an American Neo-Classical Villa as well as elegant and functional Modern living.</p>
+
+<p>Architects: ‪‪@studioessteam‬</p>
+<p>Video Credits: ‪‪@2feetdistance‬</p>
+`;
+
 document.querySelectorAll(".project-card").forEach(card => {
   card.addEventListener("click", () => {
-    const videoUrl = card.getAttribute("data-video");  // YouTube link
-    const infoText = card.getAttribute("data-info");   // Project description
+    const videoUrl = card.getAttribute("data-video") || "https://www.youtube.com/embed/8Lgi_X8VC-A"; // default placeholder
+    const infoText = card.getAttribute("data-info") || defaultDesc;
 
     iframe.src = videoUrl + "?autoplay=1&rel=0";
-    modalInfo.innerHTML = `<p>${infoText}</p>`;
+    modalInfo.innerHTML = infoText;
+
     modal.style.display = "flex";
   });
 });
 
-// Close modal on red cross
+// Close modal
 closeBtn.addEventListener("click", () => {
   modal.style.display = "none";
   iframe.src = "";
 });
 
-// Close modal when clicking outside the content
+// Close when clicking outside content
 window.addEventListener("click", (e) => {
   if (e.target === modal) {
     modal.style.display = "none";
