@@ -113,12 +113,22 @@
   <img src="ishuimage1.jpeg" alt="Architecture" class="reveal"/>
 </section>
 
-<section id="projects">
+
+
+
+
+
+
+ <section id="projects">
   <div class="container">
     <h2 class="section-title reveal">Selected Projects</h2>
     <p class="section-sub reveal">Hover to explore project details</p>
     <div class="projects-grid">
-      <div class="project-card reveal" data-video="https://www.youtube.com/embed/8Lgi_X8VC-A">
+
+      <!-- Project 1 -->
+      <div class="project-card reveal"
+        data-video="sample.mp4"
+        data-info="A calm home built with minimal forms and natural light. Located in Delhi, this residential project embraces simplicity and warmth through earthy textures and large open spaces. Designed for a peaceful lifestyle amid urban bustle.">
         <div class="card-inner">
           <div class="card-front"><img src="ishuimage2.jpeg" alt="Project 1"></div>
           <div class="card-back">
@@ -128,7 +138,11 @@
           </div>
         </div>
       </div>
-      <div class="project-card reveal" data-video="https://www.youtube.com/embed/-YlmnPh-6rE">
+
+      <!-- Project 2 -->
+      <div class="project-card reveal"
+        data-video="sample.mp4"
+        data-info="The villa is thoughtfully planned to cater to the distinct needs of two families while presenting a unified architectural form. It is essentially two homes combined into one expansive structure, connected by a central rotunda that serves as a grand living space. Each home has eight bedrooms, living and family rooms, and elaborate kitchen and dining areas. The design ensures privacy while promoting communal living through shared spaces. Constructed in a record 15 months, it captures the grandeur of an American Neo-Classical Villa and the elegance of modern living.">
         <div class="card-inner">
           <div class="card-front"><img src="ishuimage3.jpeg" alt="Project 2"></div>
           <div class="card-back">
@@ -138,7 +152,11 @@
           </div>
         </div>
       </div>
-      <div class="project-card reveal" data-video="https://www.youtube.com/embed/B4-HoKdW6j0">
+
+      <!-- Project 3 -->
+      <div class="project-card reveal"
+        data-video="sample.mp4"
+        data-info="An innovative workspace designed for a global enterprise, located in Gurgaon. The Corporate HQ focuses on natural lighting, collaborative zones, and biophilic elements to improve employee well-being. Its modern façade and open interiors symbolize transparency and growth.">
         <div class="card-inner">
           <div class="card-front"><img src="ishuimage4.jpeg" alt="Project 3"></div>
           <div class="card-back">
@@ -148,10 +166,28 @@
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
 
+<!-- Popup Modal -->
+<div id="videoModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:1000;justify-content:center;align-items:center;">
+  <div style="background:#fff;border-radius:10px;max-width:800px;width:90%;padding:1rem;position:relative;box-shadow:0 4px 20px rgba(0,0,0,0.3);overflow:auto;max-height:90vh;">
+    <button id="closeModal" style="position:absolute;top:10px;right:15px;background:red;color:white;border:none;border-radius:50%;width:30px;height:30px;font-size:18px;cursor:pointer;">×</button>
+    <video id="modalVideo" controls style="width:100%;border-radius:8px;margin-bottom:1rem;">
+      <source src="" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div id="modalInfo" style="font-size:0.95rem;line-height:1.6;color:#333;"></div>
+  </div>
+</div>
+
+
+
+
+
+ 
 <section id="services">
   <div class="container reveal">
     <h2 class="section-title">Our Services</h2>
