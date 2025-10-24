@@ -9,7 +9,6 @@
 <style>
   * { box-sizing: border-box; margin:0; padding:0; }
   body { font-family:'Inter',sans-serif; background:#f8f9fa; color:#222; scroll-behavior: smooth; }
-
   a { text-decoration:none; color:inherit; }
 
   /* Header */
@@ -20,48 +19,33 @@
   .btn-primary { background:#059669; color:#fff; padding:0.75rem 1.5rem; border-radius:8px; transition:0.3s; }
   .btn-primary:hover { background:#047857; }
 
-  /* Project Green Box */
-  .project-box { max-width:900px; margin:4rem auto; padding:2.5rem 3rem; background:#059669; color:#fff; border-radius:12px; box-shadow:0 8px 30px rgba(0,0,0,0.2); }
-  .project-box h1 { font-size:2.5rem; margin-bottom:0.5rem; text-align:center; }
-  .project-box p.meta { text-align:center; font-style:italic; margin-bottom:2rem; opacity:0.9; }
+  /* Project Box */
+  .project-box { max-width:900px; margin:4rem auto; padding:2.5rem 3rem; background:#fff; border-radius:12px; border: 3px solid #059669; box-shadow:0 8px 30px rgba(0,0,0,0.1); }
+  .project-box h1 { font-size:2.5rem; margin-bottom:0.5rem; text-align:center; font-weight:700; }
+  .project-box p.meta { text-align:center; color:#555; margin-bottom:2rem; font-style:italic; }
 
   .video-container { position:relative; padding-bottom:56.25%; height:0; margin-bottom:2rem; border-radius:12px; overflow:hidden; }
   .video-container iframe { position:absolute; top:0; left:0; width:100%; height:100%; border:none; }
 
-  .description { line-height:1.6; font-size:1rem; color:#f3f4f6; }
+  .description { line-height:1.7; font-size:1rem; color:#333; }
 
-  /* Footer / Contact */
-  #contact { padding:5rem 0; background:linear-gradient(135deg,#ecfdf5,#f8fafc); }
-  #contact .container { max-width:900px; }
-  #contact h2 { text-align:center; margin-bottom:1rem; }
-  #contact p { text-align:center; margin-bottom:2rem; color:#555; }
-
-  .contact-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:2rem; align-items:start; }
-  .contact-grid form { background:#fff; padding:2rem; border-radius:12px; box-shadow:0 4px 20px rgba(0,0,0,0.1); }
-  .contact-grid .field { position:relative; margin-bottom:1.5rem; }
-  .contact-grid input, .contact-grid textarea {
-    width:100%; padding:1rem; border:2px solid #ccc; border-radius:8px; font-size:1rem; outline:none; background:transparent;
-    transition:border-color 0.3s, box-shadow 0.3s;
-  }
-  .contact-grid input:focus, .contact-grid textarea:focus { border-color:#059669; box-shadow:0 0 10px rgba(5,150,105,0.2); }
-  .contact-grid label {
-    position:absolute; top:1rem; left:1rem; color:#777; pointer-events:none; transition:0.3s;
-  }
-  .contact-grid input:focus + label, .contact-grid input:not(:placeholder-shown) + label,
-  .contact-grid textarea:focus + label, .contact-grid textarea:not(:placeholder-shown) + label {
-    top:-0.6rem; left:0.8rem; background:#fff; padding:0 0.4rem; color:#059669; font-size:0.85rem;
-  }
+  /* Footer / Contact (same as index.html) */
+  #contact { padding:5rem 0; background:linear-gradient(135deg, #ecfdf5, #f8fafc); }
+  .contact-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(350px,1fr)); gap:2rem; align-items:start; max-width:900px; margin:0 auto; }
+  form { background:white; padding:2rem; border-radius:12px; box-shadow:0 4px 20px rgba(0,0,0,0.1); }
+  .field { position: relative; margin-bottom:1.5rem; }
+  input, textarea { width:100%; padding:1rem; border:2px solid #ccc; border-radius:8px; font-size:1rem; outline:none; background:transparent; transition: border-color 0.3s, box-shadow 0.3s; }
+  input:focus, textarea:focus { border-color:#059669; box-shadow:0 0 10px rgba(5,150,105,0.2); }
+  label { position:absolute; top:1rem; left:1rem; color:#777; pointer-events:none; transition:0.3s; }
+  input:focus + label, input:not(:placeholder-shown) + label, textarea:focus + label, textarea:not(:placeholder-shown) + label { top:-0.6rem; left:0.8rem; background:white; padding:0 0.4rem; color:#059669; font-size:0.85rem; }
   #form-success { color:green; margin-top:1rem; display:none; }
 
+  /* Footer Info */
   footer { background:#111827; color:#ccc; text-align:center; padding:2rem; margin-top:3rem; }
-  footer h2 { font-size:1.4rem; margin-bottom:1rem; }
+  footer h2 { font-size:1.4rem; margin-bottom:1rem; text-align:center; }
   .footer-info { display:flex; flex-wrap:wrap; gap:2rem; justify-content:center; margin-bottom:1.5rem; }
   .footer-info div { min-width:200px; text-align:center; }
   .footer-info span { font-weight:bold; display:block; margin-bottom:0.3rem; }
-
-  /* Reveal animation for green box content */
-  .reveal { opacity:0; transform:translateY(40px); transition:all 1s ease; }
-  .reveal.active { opacity:1; transform:translateY(0); }
 </style>
 </head>
 <body>
@@ -80,8 +64,8 @@
   </div>
 </header>
 
-<!-- Project Green Box -->
-<div class="project-box reveal">
+<!-- Project Box -->
+<div class="project-box">
   <h1>Urban Serenity</h1>
   <p class="meta">Delhi • Residential • 2024</p>
 
@@ -90,7 +74,7 @@
   </div>
 
   <div class="description">
-    <p>With a built up area of over 45,000 sq ft, The Hinge is a mansion combining two of four villas commissioned to family of Mr. Arjanbhai Dholakia of SRK Exports, one of the global leaders in Diamond industry. This project houses independent villas for his two sons - Mr. Ishver Dholakia and Mr. Akshay Dholakia, and is a part of a larger residential campus.</p>
+    <p>With a built up area of over 45,000 sq ft, The Hinge is a mansion combining two of four villas commissioned to ‪studioessteam‬. This has been designed for the family of Mr. Arjanbhai Dholakia of SRK Exports, one of the global leaders in Diamond industry. This project houses independent villas for his two sons - Mr. Ishver Dholakia and Mr. Akshay Dholakia, and is a part of a larger residential campus.</p>
 
     <p>The villa is thoughtfully planned to cater to the distinct needs of two families while presenting a unified architectural form. It is essentially two homes combined into one expansive structure, connected by a central rotunda that serves as a grand living space. Each of the two homes has eight bedrooms, living and family rooms, as well as elaborate kitchen and dining areas. The design ensures privacy for both families while promoting communal living through shared spaces.</p>
 
@@ -98,37 +82,30 @@
   </div>
 </div>
 
-<!-- Contact / Footer -->
+<!-- Footer / Contact (same as index.html) -->
 <section id="contact">
-  <div class="container">
-    <h2>Get in Touch</h2>
-    <p>We’d love to hear about your next project</p>
-    <div class="contact-grid">
-
-      <div>
-        <p><strong>Office:</strong><br>Clerk Colony, Indore</p>
-        <p><strong>Email:</strong><br>envisionspace.testing@gmail.com</p>
-        <p><strong>Phone:</strong><br>+91 0000000000</p>
-      </div>
-
-      <form action="https://formspree.io/f/mgvnjjej" method="POST">
-        <div class="field">
-          <input type="text" name="name" placeholder=" " required>
-          <label>Name</label>
-        </div>
-        <div class="field">
-          <input type="email" name="email" placeholder=" " required>
-          <label>Email</label>
-        </div>
-        <div class="field">
-          <textarea name="message" rows="4" placeholder=" " required></textarea>
-          <label>Message</label>
-        </div>
-        <button type="submit" class="btn-primary" style="width:100%;">Send Message</button>
-        <p id="form-success">Thank you! Your message has been sent.</p>
-      </form>
-
+  <div class="contact-grid">
+    <div>
+      <p><strong>Office:</strong><br>Clerk Colony, Indore</p>
+      <p><strong>Email:</strong><br>envisionspace.testing@gmail.com</p>
+      <p><strong>Phone:</strong><br>+91 0000000000</p>
     </div>
+    <form action="https://formspree.io/f/mgvnjjej" method="POST">
+      <div class="field">
+        <input type="text" name="name" placeholder=" " required>
+        <label>Name</label>
+      </div>
+      <div class="field">
+        <input type="email" name="email" placeholder=" " required>
+        <label>Email</label>
+      </div>
+      <div class="field">
+        <textarea name="message" rows="4" placeholder=" " required></textarea>
+        <label>Message</label>
+      </div>
+      <button type="submit" class="btn-primary" style="width:100%;">Send Message</button>
+      <p id="form-success">Thank you! Your message has been sent.</p>
+    </form>
   </div>
 </section>
 
@@ -143,27 +120,19 @@
 </footer>
 
 <script>
-  // Form submit
   const form = document.querySelector("form");
   form.addEventListener("submit", e => {
     e.preventDefault();
     fetch(form.action, {
-      method:"POST",
+      method: "POST",
       body: new FormData(form),
-      headers: {'Accept':'application/json'}
+      headers: { 'Accept': 'application/json' }
     }).then(response => {
       if(response.ok){
         form.reset();
         document.getElementById("form-success").style.display="block";
       } else alert("Oops! There was a problem.");
     });
-  });
-
-  // Scroll reveal for project box
-  window.addEventListener("scroll", () => {
-    const box = document.querySelector(".project-box");
-    const top = box.getBoundingClientRect().top;
-    if(top < window.innerHeight - 100) box.classList.add("active");
   });
 </script>
 </body>
